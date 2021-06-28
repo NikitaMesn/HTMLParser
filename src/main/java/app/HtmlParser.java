@@ -3,8 +3,12 @@ package app;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -66,7 +70,15 @@ public class HtmlParser {
         String fileName = getFileName();
         String outerHtml = page.outerHtml();
 
-        try(FileWriter writer = new FileWriter(fileName, false))
+        if(!Files.exists(Path.of("pages"))) {
+            try {
+                Files.createDirectory(Path.of("pages"));
+            } catch (IOException e) {
+                ExceptionUtils.writeExceptionToFile(e);
+            }
+        }
+
+        try(FileWriter writer = new FileWriter("pages/" + fileName, false))
         {
             writer.write(outerHtml);
             writer.flush();
