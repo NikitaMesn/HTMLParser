@@ -16,9 +16,17 @@ public class HtmlParser {
     private Document page;
 
 
-    public HtmlParser(String pageURL)  {
+    public HtmlParser(String pageURL) {
         this.pageURL = pageURL;
-        connect();
+
+        try {
+            this.page = Jsoup.connect(pageURL).get();
+        } catch (IOException e) {
+            ExceptionUtils.writeExceptionToFile(e);
+            this.page = null;
+        }
+
+        if (page == null) throw new NullPointerException(pageURL + " doesn't exist"); // отправим ошибку - нет такой страницы;
 
     }
 
@@ -30,16 +38,8 @@ public class HtmlParser {
     }
 
 
-    private void connect() {
-        try {
-            this.page = Jsoup.connect(pageURL).get();
-        } catch (IOException e) {
-            ExceptionUtils.writeExceptionToFile(e);
-            if (page == null) throw new NullPointerException(pageURL + "doesn't exist"); // отправим ошибку - нет такой страницы
-        }
-    }
 
-    public void getStatistic() {
+    public void printStatistic() {
         String text = page.text();
         String fileName = getFileName();
 
@@ -58,6 +58,7 @@ public class HtmlParser {
     }
 
 
+
     /*
     Публичный метод для сохранения страницы в файл
      */
@@ -71,7 +72,7 @@ public class HtmlParser {
             writer.flush();
         }
         catch(IOException ex){
-            ExceptionUtils.writeExceptionToFile(ex);;
+            ExceptionUtils.writeExceptionToFile(ex);
         }
 
     }

@@ -7,11 +7,7 @@ public class MainApp {
 
     public static void main(String[] args)   {
 
-        //HtmlParser siteParser = new HtmlParser("https://www.simbirsoft.com/");
-        //HtmlParser siteParser = new HtmlParser("https://habr.com/ru/post/345660/");
-
-        start("Введите url");
-
+        start("Введите url для просмотра статистики");
 
     }
 
@@ -21,15 +17,18 @@ public class MainApp {
 
         try {
             HtmlParser siteParser = new HtmlParser(url);
-            siteParser.getStatistic();
+            siteParser.printStatistic();
             siteParser.savePage();
-        } catch (IllegalArgumentException  | NullPointerException e) {
-            ExceptionUtils.writeExceptionToFile(e);
-            start("Ошибка в url-адресе, попробуйте еще раз:");
-
+        } catch (IllegalArgumentException illegalArgumentException) {
+            ExceptionUtils.writeExceptionToFile(illegalArgumentException);
+            System.out.println("Ошибка в url.\nСсылка должна начинаться с http:// ");
+            //start("Ошибка в url-адресе, попробуйте еще раз:");
+        }catch (NullPointerException nullPointerException){
+            System.out.println("Такого сайта не существует. Попробуйте еще раз");
         } catch (Exception e) {
             ExceptionUtils.writeExceptionToFile(e);
-            start("Что то пошло не так... " + "\nПопробуйте еще раз:");
+            System.out.println("Что то пошло не так... " + "\nПопробуйте еще раз");
+            //start("Что то пошло не так... " + "\nПопробуйте еще раз:");
         }
 
 
