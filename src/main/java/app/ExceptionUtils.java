@@ -15,6 +15,5 @@ public class ExceptionUtils {
         } catch (IOException ioException) {
             throw new RuntimeException("Could not write Exception to file", ioException);
         }
-
     }
 }

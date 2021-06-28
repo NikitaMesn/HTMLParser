@@ -16,9 +16,6 @@ public class JsonUtils {
         obj.put(key, map);
         obj.put("DATE", LocalDateTime.now().toString().substring(0, 19)); //Добавляем информацию о дате запроса
 
-
-
-
         try  {
             fileWriter = new FileWriter("jsondb.db", true);
             fileWriter.write(obj.toJSONString());

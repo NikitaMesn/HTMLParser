@@ -139,3 +139,12 @@ Datetime: 2021-06-28T16:57:47
 Error: hafgbr.com 
 Datetime: 2021-06-28T17:16:09 
  ********************************************************************
+Error: hafgbr.com 
+Datetime: 2021-06-28T17:44:15 
+ ********************************************************************
+Error: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target 
+Datetime: 2021-06-28T18:01:38 
+ ********************************************************************
+Error: hafgbr.com 
+Datetime: 2021-06-28T18:03:10 
+ ********************************************************************

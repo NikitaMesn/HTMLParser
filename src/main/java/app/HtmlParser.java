@@ -1,10 +1,7 @@
 package app;
 
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,7 +24,6 @@ public class HtmlParser {
             this.page = Jsoup.connect(pageURL).get();
         } catch (IOException e) {
             ExceptionUtils.writeExceptionToFile(e);
-            this.page = null;
         }
 
         if (page == null) throw new NullPointerException(pageURL + " doesn't exist"); // отправим ошибку - нет такой страницы;
@@ -40,7 +36,6 @@ public class HtmlParser {
                 .title()
                 .replaceAll("[^A-Za-zА-Яа-я]+", "_").trim() + ".html";
     }
-
 
 
     public void printStatistic() {
@@ -60,8 +55,6 @@ public class HtmlParser {
 
         JsonUtils.saveToJsonDB(fileName, mapWithCountWord); //сохраняем статистику в базу данных в виде JSON
     }
-
-
 
     /*
     Публичный метод для сохранения страницы в файл
@@ -86,6 +79,5 @@ public class HtmlParser {
         catch(IOException ex){
             ExceptionUtils.writeExceptionToFile(ex);
         }
-
     }
 }

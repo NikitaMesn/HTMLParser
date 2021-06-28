@@ -7,8 +7,7 @@ public class MainApp {
 
     public static void main(String[] args)   {
 
-        start("Введите url для просмотра статистики");
-
+        start("Введите url:");
     }
 
     public static void start(String text) {
@@ -30,9 +29,5 @@ public class MainApp {
             System.out.println("Что то пошло не так... " + "\nПопробуйте еще раз");
             //start("Что то пошло не так... " + "\nПопробуйте еще раз:");
         }
-
-
     }
-
-
 }
